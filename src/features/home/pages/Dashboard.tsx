@@ -38,7 +38,7 @@ export function Dashboard() {
                                 <i className="bi bi-three-dots-vertical text-2xl cursor-pointer text-main-600"></i>
                             </div>
                         }
-                        openMode="click"
+                        openMode="hover"
                         items={items}
                     />
                 </div>
