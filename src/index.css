@@ -268,17 +268,17 @@
   --color-black: #000;
   --color-white: #fff;
 
-  --main-50: var(--color-slate-950);
-    --main-100: var(--color-slate-900);
-    --main-200: var(--color-slate-800);
-    --main-300: var(--color-slate-700);
-    --main-400: var(--color-slate-600);
-    --main-500: var(--color-slate-500);
-    --main-600: var(--color-slate-400);
-    --main-700: var(--color-slate-300);
-    --main-800: var(--color-slate-200);
-    --main-900: var(--color-slate-100);
-    --main-950: var(--color-slate-50);
+  --main-50: var(--color-neutral-50);
+  --main-100: var(--color-neutral-100);
+  --main-200: var(--color-neutral-200);
+  --main-300: var(--color-neutral-300);
+  --main-400: var(--color-neutral-400);
+  --main-500: var(--color-neutral-500);
+  --main-600: var(--color-neutral-600);
+  --main-700: var(--color-neutral-700);
+  --main-800: var(--color-neutral-800);
+  --main-900: var(--color-neutral-900);
+  --main-950: var(--color-neutral-950);
 }
 
 [data-theme="light-slate"] {

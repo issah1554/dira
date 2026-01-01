@@ -43,7 +43,7 @@ export function SideNavLayout({
     return (
         <SideNavContext.Provider value={context}>
             <aside
-                className={`h-screen w-64 flex flex-col overflow-hidden
+                className={`h-screen w-64 flex flex-col overflow-hidden fixed top-0 left-0
                     bg-main-50
                     border-r border-main-200
                     ${className}`}

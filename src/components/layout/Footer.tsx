@@ -24,7 +24,7 @@ export default function Footer({ isCollapsed, isMobile }: FooterProps) {
                 color: "var(--text)"
             }}
         >
-            © {new Date().getFullYear()} Databenki Group. All rights reserved.
+            © {new Date().getFullYear()} Dira Group. All rights reserved.
         </footer>
     );
 }

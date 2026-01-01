@@ -7,6 +7,7 @@ import ForgotPasswordPage from "./features/auth/pages/ForgotPassword";
 import ResetPasswordPage from "./features/auth/pages/ResetPassword";
 import StatusPage from "./pages/StatusPage";
 import { Dashboard } from "./features/home/pages/Dashboard";
+import { Accounts } from "./features/finance/Accounts";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/auth/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/auth/reset-password" element={<ResetPasswordPage />} />
         <Route path="/home" element={<Dashboard />} />
+        <Route path="/accounts" element={<Accounts />} />
 
         <Route path="*" element={<StatusPage status="not-found" />} />
       </Routes>

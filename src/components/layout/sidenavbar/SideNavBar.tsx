@@ -25,7 +25,7 @@ export function Sidebar() {
                     <NavItems
                         title="Main Menu"
                         items={[
-                            { label: "Dashboard", to: "/", icon: <i className="bi bi-house" /> },
+                            { label: "Dashboard", to: "/home", icon: <i className="bi bi-house" /> },
                             { label: "Calendar", to: "/calendar", icon: <i className="bi bi-calendar" />, badge: 3 },
                             {
                                 label: "Projects",
@@ -40,11 +40,11 @@ export function Sidebar() {
                     />
 
                     <NavSection
-                        title="Administration"
+                        title="Finance"
                         icon={<i className="bi bi-shield-lock" />}
                         items={[
-                            { label: "Users", to: "/admin/users", icon: <i className="bi bi-people" /> },
-                            { label: "Roles", to: "/admin/roles", icon: <i className="bi bi-person-badge" /> },
+                            { label: "Accounts", to: "/accounts", icon: <i className="bi bi-people" /> },
+                            { label: "Obligations", to: "/obligations", icon: <i className="bi bi-person-badge" /> },
                         ]}
                     />
 
