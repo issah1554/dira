@@ -2,13 +2,18 @@ import { AppLayout } from "../../../components/layout/AppLayout";
 import { DropdownMenu, type DropdownItem } from "../../../components/ui/Dropdown";
 
 const items: DropdownItem[] = [
-    { label: "Profile" },
+    {
+        label: "Profile",
+        icon: <i className="bi bi-person"></i>,
+    },
     {
         label: "Settings",
+        icon: <i className="bi bi-gear"></i>,
         subItems: [
             { label: "Account" },
             {
                 label: "Security",
+                icon: <i className="bi bi-lock"></i>,
                 subItems: [
                     { label: "Passwords" },
                     { label: "2FA" },
@@ -16,8 +21,8 @@ const items: DropdownItem[] = [
             },
         ],
     },
-    { label: "Logout" },
 ];
+
 
 export function Dashboard() {
     return (
@@ -29,10 +34,11 @@ export function Dashboard() {
                 <div className="mt-6">
                     <DropdownMenu
                         toggler={
-                            <button className="px-4 py-2 bg-primary-600 text-white rounded-md hover:bg-primary-700">
-                                Open Menu
-                            </button>
+                            <div className="flex items-center gap-2">
+                                <i className="bi bi-three-dots-vertical text-2xl cursor-pointer text-main-600"></i>
+                            </div>
                         }
+                        openMode="click"
                         items={items}
                     />
                 </div>

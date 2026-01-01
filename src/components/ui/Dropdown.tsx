@@ -6,37 +6,51 @@ import { useState, type ReactNode } from "react";
 
 export type DropdownItem = {
   label: string;
+  icon?: ReactNode;
   onClick?: () => void;
-  href?: string;
   subItems?: DropdownItem[];
 };
 
-export type DropdownProps = {
+export type DropdownMenuProps = {
   toggler: ReactNode;
   items: DropdownItem[];
+  openMode: "hover" | "click";
 };
 
 /* =======================
    Public Component
 ======================= */
 
-export function DropdownMenu({ toggler, items }: DropdownProps) {
+export function DropdownMenu({
+  toggler,
+  items,
+  openMode,
+}: DropdownMenuProps) {
   const [open, setOpen] = useState(false);
 
+  const hoverProps =
+    openMode === "hover"
+      ? {
+        onMouseEnter: () => setOpen(true),
+        onMouseLeave: () => setOpen(false),
+      }
+      : {};
+
   return (
-    <div
-      className="relative inline-block text-left"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
+    <div className="relative inline-block text-left" {...hoverProps}>
       {/* Toggler */}
-      <div className="cursor-pointer">
+      <div
+        className="cursor-pointer"
+        onClick={
+          openMode === "click" ? () => setOpen((v) => !v) : undefined
+        }
+      >
         {toggler}
       </div>
 
       {/* Menu */}
       {open && (
-        <div className="absolute left-0 mt-2 w-56 rounded-xl border bg-white shadow-lg">
+        <div className="absolute left-0 mt-0.5 w-56 rounded-sm border border-main-300 bg-main-200 shadow-lg">
           <DropdownList items={items} />
         </div>
       )}
@@ -46,55 +60,57 @@ export function DropdownMenu({ toggler, items }: DropdownProps) {
 
 /* =======================
    Internal Components
-   (not exported)
 ======================= */
 
 type DropdownListProps = {
   items: DropdownItem[];
-  depth?: number;
 };
 
-function DropdownList({ items, depth = 0 }: DropdownListProps) {
+function DropdownList({ items }: DropdownListProps) {
   return (
     <ul className="py-1">
       {items.map((item, index) => (
-        <DropdownListItem
-          key={index}
-          item={item}
-          depth={depth}
-        />
+        <DropdownItemRow key={index} item={item} />
       ))}
     </ul>
   );
 }
 
-type DropdownListItemProps = {
+type DropdownItemRowProps = {
   item: DropdownItem;
-  depth: number;
 };
 
-function DropdownListItem({ item }: DropdownListItemProps) {
+function DropdownItemRow({ item }: DropdownItemRowProps) {
   const hasSubItems = !!item.subItems?.length;
 
   return (
-    <li className="relative group">
-      {/* Item */}
-      <div
-        onClick={item.onClick}
-        className="flex items-center justify-between px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
-      >
-        <span>{item.label}</span>
+    <li className="relative">
+      {/* Parent hover scope */}
+      <div className="group">
+        {/* Item */}
+        <div
+          onClick={item.onClick}
+          className="flex items-center justify-between gap-3 px-4 py-2 text-sm hover:bg-main-300 cursor-pointer"
+        >
+          <div className="flex items-center gap-2">
+            {item.icon && (
+              <span className="text-main-600">{item.icon}</span>
+            )}
+            <span>{item.label}</span>
+          </div>
+
+          {hasSubItems && (
+            <span className="text-xs text-main-600"> <i className="bi bi-chevron-right" /></span>
+          )}
+        </div>
+
+        {/* Submenu (ONLY opens when THIS item is hovered) */}
         {hasSubItems && (
-          <span className="ml-2 text-xs">▶</span>
+          <div className="absolute top-0 left-full ml-0.5 hidden min-w-56 rounded-sm border border-main-300 bg-main-200 shadow-lg group-hover:block">
+            <DropdownList items={item.subItems!} />
+          </div>
         )}
       </div>
-
-      {/* Submenu */}
-      {hasSubItems && (
-        <div className="absolute top-0 left-full ml-1 hidden min-w-56 rounded-xl border bg-white shadow-lg group-hover:block">
-          <DropdownList items={item.subItems!} />
-        </div>
-      )}
     </li>
   );
 }

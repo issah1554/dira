@@ -36,13 +36,19 @@ export function NavItem({
     const content = (
         <div
             className={`relative flex items-center justify-between px-1 py-2  text-sm cursor-pointer text-main-600 hover:text-primary
-                ${isActive || isChildActive ? "text-primary bg-main-300" : ""}
+                ${isActive || isChildActive ? "text-primary bg-main-300" : ""} ${isOpen && hasSubItems ? "bg-main-300" : ""}
                 hover:bg-main-300
             `}
             style={{ paddingLeft }}
             onClick={() => hasSubItems && setIsOpen(v => !v)}
         >
             {/* Highlight bar */}
+            {(isOpen && hasSubItems) && (
+                <span
+                    className="absolute top-0 bottom-0 left-px w-px bg-primary  "
+                />
+            )}
+
             {(isActive || isChildActive) && (
                 <span
                     className="absolute left-0 top-0 bottom-0 w-1 bg-primary  "
