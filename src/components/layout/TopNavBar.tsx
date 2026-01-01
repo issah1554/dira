@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { Button } from "../ui/Buttons";
 import useAuth from "../../features/auth/hooks/useAuth";
-import Avatar from "../ui/Avatar";
 
 interface TopNavProps {
     toggleSidebar: () => void;
@@ -16,7 +14,7 @@ export default function TopNav({
     isCollapsed,
     isMobile,
 }: TopNavProps) {
-    const { user } = useAuth();
+    useAuth();
 
     const [open, setOpen] = useState<"notif" | "msg" | "profile" | null>(null);
     const navRef = useRef<HTMLDivElement>(null);

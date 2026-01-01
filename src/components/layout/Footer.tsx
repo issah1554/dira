@@ -21,7 +21,7 @@ export default function Footer({ isCollapsed, isMobile }: FooterProps) {
                 transition: 'margin-left 0.3s ease',
             }}
         >
-            © {new Date().getFullYear()} <a href="https://databenki.com" target="_blank" className="underline hover:text-accent">Dira</a> . All rights reserved.
+            © {new Date().getFullYear()} <a href="https://databenki.com" target="_blank" className="underline text-primary hover:text-accent">Dira</a> . All rights reserved.
         </footer>
     );
 }
