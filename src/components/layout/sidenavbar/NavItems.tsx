@@ -9,7 +9,7 @@ export function NavItems({ title, items }: NavItemsProps) {
     return (
         <div>
             {title && (
-                <div className="px-3 py-2 text-xs font-semibold uppercase text-gray-500">
+                <div className="px-3 py-2 text-xs font-semibold uppercase text-main-500">
                     {title}
                 </div>
             )}

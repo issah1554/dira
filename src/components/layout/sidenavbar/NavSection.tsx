@@ -17,10 +17,10 @@ export function NavSection({
     const [collapsed, setCollapsed] = useState(defaultCollapsed);
 
     return (
-        <div className="mt-3 border-t border-gray-200 dark:border-gray-700 pt-2">
+        <div className="mt-3 border-t border-main-200 pt-2">
             <button
                 onClick={() => setCollapsed(v => !v)}
-                className="w-full flex items-center justify-between px-3 py-2 text-xs font-semibold uppercase text-gray-500"
+                className="w-full flex items-center justify-between px-3 py-2 text-xs font-semibold uppercase text-main-500"
             >
                 <div className="flex items-center gap-2">
                     {icon}

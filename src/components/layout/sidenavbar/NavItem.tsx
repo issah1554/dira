@@ -35,11 +35,11 @@ export function NavItem({
     const content = (
         <div
             className={`flex items-center justify-between px-3 py-2 rounded text-sm cursor-pointer
-        ${isActive || isChildActive ? "bg-primary text-white" : "hover:bg-gray-100 dark:hover:bg-gray-800"}`}
+        ${isActive || isChildActive ? "bg-primary text-main-100" : "hover:bg-main-100"}`}
             style={{ paddingLeft }}
             onClick={() => hasSubItems && setIsOpen(v => !v)}
         >
-            <div className="flex items-center gap-2 truncate">
+            <div className="flex items-center gap-2 truncate text-main-700">
                 {hasSubItems && (
                     <span className="text-xs">
                         {isOpen ? "▾" : "▸"}
@@ -50,7 +50,7 @@ export function NavItem({
             </div>
 
             {badge && (
-                <span className="text-xs px-2 py-0.5 rounded-full bg-gray-200 dark:bg-gray-700">
+                <span className="text-xs px-2 py-0.5 rounded-full bg-main-200 text-main-700">
                     {badge}
                 </span>
             )}

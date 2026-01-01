@@ -44,13 +44,13 @@ export function SideNavLayout({
         <SideNavContext.Provider value={context}>
             <aside
                 className={`h-screen w-64 flex flex-col overflow-hidden
-                    bg-white dark:bg-gray-900
-                    border-r border-gray-200 dark:border-gray-800
+                    bg-main-50
+                    border-r border-main-200
                     ${className}`}
             >
                 {/* Sticky Header */}
                 {stickyHeader && (
-                    <div className="sticky top-0 z-10 bg-white dark:bg-gray-900">
+                    <div className="sticky top-0 z-10 bg-main-50  border-b border-main-200">
                         {stickyHeader}
                     </div>
                 )}
@@ -69,7 +69,7 @@ export function SideNavLayout({
 
                 {/* Sticky Footer */}
                 {stickyFooter && (
-                    <div className="sticky bottom-0 z-10 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+                    <div className="sticky bottom-0 z-10 bg-main-50  border-t border-main-200">
                         {stickyFooter}
                     </div>
                 )}

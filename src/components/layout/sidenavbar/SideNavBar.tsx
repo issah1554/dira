@@ -13,8 +13,8 @@ export function Sidebar() {
     return (
         <SideNavLayout>
 
-            <SideNavHeader sticky={false}>
-                <div className="px-3 py-4 flex items-center gap-2 text-xl font-bold">
+            <SideNavHeader sticky={true}>
+                <div className="px-3 py-4 flex items-center gap-2 text-xl font-bold text-primary">
                     <i className="bi bi-rocket-takeoff text-primary" />
                     MyApp
                 </div>
@@ -60,7 +60,7 @@ export function Sidebar() {
                 </div>
             </SideNavMain>
 
-            <SideNavFooter sticky={false}>
+            <SideNavFooter sticky={true}>
                 <div className="px-3 py-3 space-y-1">
                     <NavItem
                         label="Help & Support"
