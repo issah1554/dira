@@ -1,90 +1,100 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 
-export interface DropdownItem {
+/* =======================
+   Types
+======================= */
+
+export type DropdownItem = {
   label: string;
-  icon?: ReactNode;        // user-provided (FA, BI, SVG, anything)
   onClick?: () => void;
   href?: string;
-  danger?: boolean;
-}
+  subItems?: DropdownItem[];
+};
 
-interface DropdownProps {
-  trigger: ReactNode;
-  items: DropdownItem[][];
-  align?: "left" | "right";
-}
+export type DropdownProps = {
+  toggler: ReactNode;
+  items: DropdownItem[];
+};
 
-export function Dropdown({
-  trigger,
-  items,
-  align = "right",
-}: DropdownProps) {
+/* =======================
+   Public Component
+======================= */
+
+export function DropdownMenu({ toggler, items }: DropdownProps) {
   const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  // close on outside click
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
 
   return (
-    <div ref={ref} className="relative inline-block">
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        className="inline-flex items-center gap-2 rounded-md bg-white/10 px-3 py-2 text-sm font-medium text-white hover:bg-white/20"
-      >
-        {trigger}
-      </button>
+    <div
+      className="relative inline-block text-left"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      {/* Toggler */}
+      <div className="cursor-pointer">
+        {toggler}
+      </div>
 
+      {/* Menu */}
       {open && (
-        <div
-          className={`absolute z-50 mt-2 w-56 rounded-md bg-gray-800 divide-y divide-white/10 shadow-lg ${align === "right" ? "right-0" : "left-0"
-            }`}
-        >
-          {items.map((group, gi) => (
-            <div key={gi} className="py-1">
-              {group.map((item, ii) => {
-                const base =
-                  "flex items-center gap-3 px-4 py-2 text-sm w-full text-left hover:bg-white/5";
-                const color = item.danger
-                  ? "text-red-400"
-                  : "text-gray-300";
-
-                return item.href ? (
-                  <a
-                    key={ii}
-                    href={item.href}
-                    className={`${base} ${color}`}
-                    onClick={() => setOpen(false)}
-                  >
-                    {item.icon}
-                    <span>{item.label}</span>
-                  </a>
-                ) : (
-                  <button
-                    key={ii}
-                    onClick={() => {
-                      item.onClick?.();
-                      setOpen(false);
-                    }}
-                    className={`${base} ${color}`}
-                  >
-                    {item.icon}
-                    <span>{item.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-          ))}
+        <div className="absolute left-0 mt-2 w-56 rounded-xl border bg-white shadow-lg">
+          <DropdownList items={items} />
         </div>
       )}
     </div>
+  );
+}
+
+/* =======================
+   Internal Components
+   (not exported)
+======================= */
+
+type DropdownListProps = {
+  items: DropdownItem[];
+  depth?: number;
+};
+
+function DropdownList({ items, depth = 0 }: DropdownListProps) {
+  return (
+    <ul className="py-1">
+      {items.map((item, index) => (
+        <DropdownListItem
+          key={index}
+          item={item}
+          depth={depth}
+        />
+      ))}
+    </ul>
+  );
+}
+
+type DropdownListItemProps = {
+  item: DropdownItem;
+  depth: number;
+};
+
+function DropdownListItem({ item }: DropdownListItemProps) {
+  const hasSubItems = !!item.subItems?.length;
+
+  return (
+    <li className="relative group">
+      {/* Item */}
+      <div
+        onClick={item.onClick}
+        className="flex items-center justify-between px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
+      >
+        <span>{item.label}</span>
+        {hasSubItems && (
+          <span className="ml-2 text-xs">▶</span>
+        )}
+      </div>
+
+      {/* Submenu */}
+      {hasSubItems && (
+        <div className="absolute top-0 left-full ml-1 hidden min-w-56 rounded-xl border bg-white shadow-lg group-hover:block">
+          <DropdownList items={item.subItems!} />
+        </div>
+      )}
+    </li>
   );
 }
