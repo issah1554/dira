@@ -13,7 +13,7 @@ export default function Footer({ isCollapsed, isMobile }: FooterProps) {
 
     return (
         <footer
-            className={`text-center bg-main-100 border-t border-main-200 mt-auto text-main-700 py-3 ${isCollapsed && !isMobile ? 'collapsed' : ''
+            className={`text-center bg-main-100 border-none border-main-200 mt-auto text-main-700 py-3 ${isCollapsed && !isMobile ? 'collapsed' : ''
                 }`}
             style={{
                 marginLeft: shouldAdjustMargin

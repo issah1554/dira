@@ -33,7 +33,7 @@ export default function TopNav({
     return (
         <nav
             ref={navRef}
-            className={`h-16 border-b border-main-200 bg-main-100 ${isCollapsed && !isMobile ? "ml-20" : "ml-0"
+            className={`h-16 border-none border-main-200 bg-main-100 ${isCollapsed && !isMobile ? "ml-20" : "ml-0"
                 }`}
         >
             <div className="h-full px-4 flex items-center justify-between">

@@ -35,7 +35,7 @@ export function NavItem({
     const content = (
         <div
             className={`flex items-center justify-between px-3 py-2 rounded text-sm cursor-pointer
-        ${isActive || isChildActive ? "bg-primary text-main-100" : "hover:bg-main-100"}`}
+        ${isActive || isChildActive ? "bg-primary-300 text-main-100" : "hover:bg-primary-100"}`}
             style={{ paddingLeft }}
             onClick={() => hasSubItems && setIsOpen(v => !v)}
         >
