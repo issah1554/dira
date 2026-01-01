@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import useAuth from "../../features/auth/hooks/useAuth";
+import { useTheme } from "../../contexts/ThemeContext";
 
 interface TopNavProps {
     toggleSidebar: () => void;
@@ -14,6 +15,8 @@ export default function TopNav({
     isCollapsed,
     isMobile,
 }: TopNavProps) {
+    
+    const { toggleTheme } = useTheme();
     useAuth();
 
     const [open, setOpen] = useState<"notif" | "msg" | "profile" | null>(null);
@@ -48,6 +51,15 @@ export default function TopNav({
 
                 {/* Right section */}
                 <div className="flex items-center gap-4">
+                    {/* Theme toggle */}
+                    <button
+                        onClick={toggleTheme}
+                        className="text-main-500 hover:text-main-700"
+                        aria-label="Toggle theme"
+                    >
+                        <i className="bi bi-circle-half text-xl" />
+                    </button>
+
                     {/* Notifications */}
                     <div className="relative">
                         <button
