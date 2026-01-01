@@ -12,7 +12,7 @@ import { NavItem } from "./NavItem";
 export function Sidebar() {
     return (
         <SideNavLayout>
-
+            
             <SideNavHeader sticky={true}>
                 <div className="px-3 py-4 flex items-center gap-2 text-xl font-bold text-primary">
                     <i className="bi bi-rocket-takeoff text-primary" />

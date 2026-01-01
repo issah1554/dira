@@ -100,6 +100,11 @@ export function SideNavHeader({ children, sticky = true }: SideNavHeaderProps) {
     return null; // rendered via context in layout
 }
 
+// ------------------ Main ------------------
+export function SideNavMain({ children }: SideNavMainProps) {
+    return <div className="px-3 py-4 space-y-3">{children}</div>;
+}
+
 // ------------------ Footer ------------------
 export function SideNavFooter({ children, sticky = true }: SideNavFooterProps) {
     const { registerFooter } = useSideNav();
@@ -109,7 +114,3 @@ export function SideNavFooter({ children, sticky = true }: SideNavFooterProps) {
     return null; // rendered via context in layout
 }
 
-// ------------------ Main ------------------
-export function SideNavMain({ children }: SideNavMainProps) {
-    return <div className="px-3 py-4 space-y-3">{children}</div>;
-}
