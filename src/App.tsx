@@ -6,7 +6,7 @@ import RegisterPage from "./features/auth/pages/Register";
 import ForgotPasswordPage from "./features/auth/pages/ForgotPassword";
 import ResetPasswordPage from "./features/auth/pages/ResetPassword";
 import StatusPage from "./pages/StatusPage";
-import HomePage from "./features/home/pages/Dashboard";
+import { Dashboard } from "./features/home/pages/Dashboard";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Route path="/auth/register" element={<RegisterPage />} />
         <Route path="/auth/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/auth/reset-password" element={<ResetPasswordPage />} />
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/home" element={<Dashboard />} />
 
         <Route path="*" element={<StatusPage status="not-found" />} />
       </Routes>

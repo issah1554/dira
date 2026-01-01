@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect, useState } from "react";
-import Sidebar from "./SideNavBar";
+import Sidebar from "./sidenavbar/SideNavBar";
 import TopNav from "./TopNavBar";
 import Footer from "./Footer";
 
