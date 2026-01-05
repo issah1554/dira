@@ -7,13 +7,11 @@ import Avatar from "../ui/Avatar";
 
 interface TopNavProps {
     toggleSidebar: () => void;
-    isCollapsed: boolean;
     isMobile: boolean;
 }
 
 export default function TopNav({
     toggleSidebar,
-    isCollapsed,
     isMobile,
 }: TopNavProps) {
 
@@ -37,25 +35,46 @@ export default function TopNav({
     return (
         <nav
             ref={navRef}
-            className={`h-16 border-none border-main-200 bg-main-100 ${isCollapsed && !isMobile ? "ml-20" : "ml-0"
-                }`}
+            className="h-14 sm:h-16 border-none border-main-200 bg-main-100 sticky top-0 z-30"
         >
-            <div className="h-full px-4 flex items-center justify-between">
-                {/* Sidebar toggle */}
+            <div className="h-full px-2 sm:px-4 flex items-center justify-between">
+                {/* Sidebar toggle - visible on mobile */}
                 <button
                     onClick={toggleSidebar}
                     aria-label="Toggle sidebar"
-                    className="text-main-500 hover:text-main-700"
+                    className={`text-main-500 hover:text-main-700 ${isMobile ? 'block' : 'hidden'}`}
                 >
                     <i className="bi bi-list text-2xl" />
                 </button>
 
+                {/* Spacer for desktop when sidebar toggle is hidden */}
+                {!isMobile && <div />}
+
                 {/* Right section */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-2 sm:gap-4">
+                    <button
+                        onClick={(e) => {
+                            const icon = e.currentTarget.querySelector("i");
+
+                            if (!document.fullscreenElement) {
+                                document.documentElement.requestFullscreen();
+                                icon?.classList.replace("bi-fullscreen", "bi-fullscreen-exit");
+                            } else {
+                                document.exitFullscreen();
+                                icon?.classList.replace("bi-fullscreen-exit", "bi-fullscreen");
+                            }
+                        }}
+                        className="text-main-500 hover:text-primary-700 cursor-pointer"
+                        aria-label="Toggle fullscreen"
+                    >
+                        <i className="bi bi-fullscreen text-xl" />
+                    </button>
+
+
                     {/* Theme toggle */}
                     <button
                         onClick={toggleTheme}
-                        className="text-main-500 hover:text-main-700"
+                        className="text-main-500 hover:text-main-700 cursor-pointer"
                         aria-label="Toggle theme"
                     >
                         <i className="bi bi-circle-half text-xl" />
@@ -65,7 +84,7 @@ export default function TopNav({
                     <div className="relative">
                         <button
                             onClick={() => setOpen(open === "notif" ? null : "notif")}
-                            className="relative text-main-500 hover:text-main-700"
+                            className="relative text-main-500 hover:text-main-700 cursor-pointer"
                         >
                             <i className="bi bi-bell text-xl" />
                             <span className="absolute -top-1 -right-2 text-[10px] px-1.5 rounded-full bg-red-600 text-white">
@@ -89,7 +108,7 @@ export default function TopNav({
                                 </div>
                                 <Link
                                     to="/notifications"
-                                    className="block text-center px-4 py-2 border-t border-main-300 hover:border-primary-300 text-primary-700 hover:bg-primary-200 rounded-b-sm"
+                                    className="block text-center px-4 py-2 border-t hover:border border-main-300 hover:border-primary-300 text-primary-700 hover:bg-primary-200 rounded-b-sm"
                                 >
                                     View all
                                 </Link>
@@ -103,7 +122,7 @@ export default function TopNav({
                     <div className="relative">
                         <button
                             onClick={() => setOpen(open === "profile" ? null : "profile")}
-                            className="focus:outline-none"
+                            className="focus:outline-none cursor-pointer "
                         >
                             <Avatar
                                 alt="Issah Xevier"
@@ -112,32 +131,15 @@ export default function TopNav({
                         </button>
 
                         {open === "profile" && (
-                            <div className="absolute right-0 mt-2 w-72 bg-main-200 border border-main-300 rounded-md shadow-lg text-sm z-50">
+                            <div className="absolute right-0 mt-2 w-40 bg-main-200 border border-main-300 rounded-md shadow-lg text-sm z-50">
                                 <div className="px-4 py-4 text-center border-b border-main-300">
-                                    <img
-                                        src={
-                                            user?.avatar ||
-                                            "https://res.cloudinary.com/dy6frwbfh/image/upload/cyj3kqoatd0i0437py8f.jpg"
-                                        }
-                                        className="w-20 h-20 rounded-full mx-auto mb-3 object-cover"
+                                    <Avatar
+                                        alt={user?.name || "User"}
+                                        size={48}
                                     />
-                                    <h5 className="font-semibold">
-                                        {user?.first_name} {user?.last_name}
-                                    </h5>
-                                    <p className="text-main-500 text-xs">{user?.email}</p>
-                                    {user?.roles?.length > 0 && (
-                                        <p className="text-main-500 text-xs mt-1">
-                                            Roles: {user.roles.join(", ")}
-                                        </p>
-                                    )}
+                                    <div className="mt-2 font-semibold">{user?.name || "User"}</div>
+                                    <div className="text-xs text-main-500">{user?.email || "user@example.com"}</div>                                    
                                 </div>
-
-                                <Link
-                                    to="/settings/profile"
-                                    className="flex items-center gap-2 px-4 py-2 hover:bg-main-300"
-                                >
-                                    <i className="bi bi-person" /> My Profile
-                                </Link>
 
                                 <Link
                                     to="/settings"
@@ -148,7 +150,7 @@ export default function TopNav({
 
                                 <Link
                                     to="/auth/logout"
-                                    className="flex items-center gap-2 px-4 py-2 text-danger-600 border-t border-main-300 hover:bg-danger-100 hover:border-danger-300 rounded-b-sm"
+                                    className="flex items-center gap-2 px-4 py-2 text-danger-600 border-t hover:border border-main-300 hover:bg-danger-100 hover:border-danger-300 rounded-b-sm"
                                 >
                                     <i className="bi bi-box-arrow-right" /> Logout
                                 </Link>

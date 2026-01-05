@@ -1,8 +1,5 @@
 import { Link } from "react-router-dom";
 import { useTheme } from "../hooks/useTheme";
-import Select2 from "../components/ui/Select2";
-import Avatar from "../components/ui/Avatar";
-import { Toast } from "../components/ui/Toast";
 
 export default function LandingPage() {
     const { toggleTheme } = useTheme();
@@ -15,7 +12,7 @@ export default function LandingPage() {
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 rounded-full bg-main-300 flex items-center justify-center">
                             <img
-                                src="/invomax.svg"
+                                src="/bag.svg"
                                 alt="Invomax logo"
                                 className="w-6 h-6 object-contain"
                                 onClick={toggleTheme}
@@ -37,33 +34,6 @@ export default function LandingPage() {
                 <p className="text-lg md:text-xl max-w-2xl mb-8 text-main-600">
                     An Invetory Manager for track, analyze, and optimize your investments with ease.
                 </p>
-                <Select2
-                    options={[
-                        { value: "1", label: "✅ Option 1" },
-                        { value: "2", label: "✅ Option 2" },
-                        { value: "3", label: "✅ Option 3" },
-                        { value: "4", label: "Option 4" },
-                        { value: "5", label: "Option 5" },
-                        { value: "6", label: "Option 6" },
-                        { value: "7", label: "Option 7" },
-                    ]}
-                    placeholder="Select an option"
-                    color="primary"
-                    multiple={true}
-                    size="md"
-                    radius="none"
-                />
-
-                <Avatar
-                    alt="John Doe"
-                    // src="https://res.cloudinary.com/dy6frwbfh/image/upload/cyj3kqoatd0i0437py8f.jpg"
-                    size={40}
-                    initials="John Doe"
-                    status="offline"
-                    rounded="full"
-                    showEditButton={false}
-                    onEdit={() => Toast.fire({ icon: "success", title: "Profile updated successfully!" })}
-                />
             </main>
 
             {/* Footer */}
