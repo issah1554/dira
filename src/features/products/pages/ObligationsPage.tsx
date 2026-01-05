@@ -27,7 +27,7 @@ const columns: Column<ObligationRow>[] = [
         key: "account",
         header: "Account",
         sortable: true,
-        priority: 9,
+        priority: 6,
     },
     {
         key: "counterparty_name",
@@ -39,7 +39,7 @@ const columns: Column<ObligationRow>[] = [
         key: "original_amount",
         header: "Original Amount",
         sortable: true,
-        priority: 8,
+        priority: 9,
         render: row => (
             <span
                 className={`font-semibold ${row.dc === "dr" ? "text-red-600" : "text-green-600"
@@ -53,7 +53,7 @@ const columns: Column<ObligationRow>[] = [
         key: "remaining_amount",
         header: "Remaining",
         sortable: true,
-        priority: 7,
+        priority: 8,
         render: row => (
             <span
                 className={`font-semibold ${row.dc === "dr" ? "text-red-500" : "text-green-500"
