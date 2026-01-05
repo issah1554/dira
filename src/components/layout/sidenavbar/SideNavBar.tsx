@@ -19,7 +19,7 @@ function SidebarHeader() {
             <i className="bi bi-compass text-primary" />
             {!isCollapsed && (
                 <>
-                    <span className="whitespace-nowrap overflow-hidden flex-1">Dira</span>
+                    <span className="whitespace-nowrap overflow-hidden flex-1">Dira.Me</span>
                     <button
                         onClick={togglePin}
                         className={`ml-auto p-1 transition-colors cursor-pointer w-8 h-8 rounded-full flex items-center justify-center
@@ -84,8 +84,8 @@ export function Sidebar() {
                                 subItems: [
                                     { label: "Ledger", to: "/products", icon: <i className="bi bi-box" /> },
                                     { label: "Obligations", to: "/products/categories", icon: <i className="bi bi-tags" /> },
-                                    { label: "Accounts", to: "/services", icon: <i className="bi bi-gear" /> },
-                                    { label: "Budgets", to: "/services", icon: <i className="bi bi-gear" /> },
+                                    { label: "Accounts", to: "/accounts", icon: <i className="bi bi-gear" /> },
+                                    { label: "Budgets", to: "/budgets", icon: <i className="bi bi-gear" /> },
                                 ],
                             },
                             { label: "Reports", to: "/reports", icon: <i className="bi bi-bar-chart" /> },

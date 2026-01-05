@@ -1,79 +1,209 @@
-import { useState } from "react";
+import CollapsibleTable, { type Column } from "../../../components/ui/Table";
 import { Button } from "../../../components/ui/Buttons";
-import { Modal } from "../../../components/ui/Modal";
-import { TextInput } from "../../../components/ui/TextInput";
 
-const sampleCategories = [
-    { id: 1, name: "Stationery", description: "Notebooks, papers, and writing materials", productCount: 45 },
-    { id: 2, name: "Writing", description: "Pens, pencils, markers, and highlighters", productCount: 78 },
-    { id: 3, name: "Office Supplies", description: "Staplers, clips, and desk accessories", productCount: 32 },
-    { id: 4, name: "Art Supplies", description: "Drawing and painting materials", productCount: 56 },
-    { id: 5, name: "Filing", description: "Folders, binders, and filing accessories", productCount: 23 },
+/* =======================
+   Row type
+======================= */
+
+type ObligationRow = {
+    id: number;
+    account: string;
+    counterparty_name: string;
+    dc: "dr" | "cr";                 // dr = payable, cr = receivable (NOT shown)
+    original_amount: number;
+    remaining_amount: number;
+    start_date: string;
+    due_date: string;
+    created_at: string;
+    status: "open" | "settled" | "overdue";
+};
+
+/* =======================
+   Columns
+======================= */
+
+const columns: Column<ObligationRow>[] = [
+    {
+        key: "account",
+        header: "Account",
+        sortable: true,
+        priority: 9,
+    },
+    {
+        key: "counterparty_name",
+        header: "Counterparty",
+        sortable: true,
+        priority: 10,
+    },
+    {
+        key: "original_amount",
+        header: "Original Amount",
+        sortable: true,
+        priority: 8,
+        render: row => (
+            <span
+                className={`font-semibold ${row.dc === "dr" ? "text-red-600" : "text-green-600"
+                    }`}
+            >
+                {row.original_amount.toLocaleString()} TZS
+            </span>
+        ),
+    },
+    {
+        key: "remaining_amount",
+        header: "Remaining",
+        sortable: true,
+        priority: 7,
+        render: row => (
+            <span
+                className={`font-semibold ${row.dc === "dr" ? "text-red-500" : "text-green-500"
+                    }`}
+            >
+                {row.remaining_amount.toLocaleString()} TZS
+            </span>
+        ),
+    },
+    {
+        key: "start_date",
+        header: "Start Date",
+        sortable: true,
+        priority: 6,
+    },
+    {
+        key: "due_date",
+        header: "Due Date",
+        sortable: true,
+        priority: 6,
+    },
+    {
+        key: "created_at",
+        header: "Created At",
+        sortable: true,
+        priority: 5,
+    },
+    {
+        key: "status",
+        header: "Status",
+        sortable: true,
+        priority: 7,
+        render: row => (
+            <span
+                className={`px-2 py-0.5 rounded text-xs font-semibold ${row.status === "settled"
+                        ? "bg-green-100 text-green-700"
+                        : row.status === "overdue"
+                            ? "bg-red-100 text-red-700"
+                            : "bg-yellow-100 text-yellow-700"
+                    }`}
+            >
+                {row.status}
+            </span>
+        ),
+    },
+    {
+        key: "actions",
+        header: "Actions",
+        sortable: false,
+        priority: 9,
+        render: () => (
+            <div className="flex gap-2">
+                <Button size="xs" color="primary">View</Button>
+                <Button size="xs" color="success">Apply Payment</Button>
+            </div>
+        ),
+    },
 ];
 
-export function Categories() {
-    const [open, setOpen] = useState(false);
-    const [formData, setFormData] = useState({ name: "", description: "" });
+/* =======================
+   Data
+======================= */
 
-    const handleClose = () => setOpen(false);
+const obligations: ObligationRow[] = [
+    {
+        id: 1,
+        account: "Bank",
+        counterparty_name: "Electricity Company",
+        dc: "dr",
+        original_amount: 300000,
+        remaining_amount: 120000,
+        start_date: "2026-01-01",
+        due_date: "2026-01-10",
+        created_at: "2026-01-01",
+        status: "open",
+    },
+    {
+        id: 2,
+        account: "Bank",
+        counterparty_name: "ABC Client Ltd",
+        dc: "cr",
+        original_amount: 850000,
+        remaining_amount: 850000,
+        start_date: "2026-01-02",
+        due_date: "2026-01-15",
+        created_at: "2026-01-02",
+        status: "open",
+    },
+    {
+        id: 3,
+        account: "Cash",
+        counterparty_name: "ISP Provider",
+        dc: "dr",
+        original_amount: 120000,
+        remaining_amount: 120000,
+        start_date: "2025-12-20",
+        due_date: "2026-01-05",
+        created_at: "2025-12-20",
+        status: "overdue",
+    },
+    {
+        id: 4,
+        account: "Bank",
+        counterparty_name: "Retail Partner",
+        dc: "cr",
+        original_amount: 500000,
+        remaining_amount: 0,
+        start_date: "2025-12-10",
+        due_date: "2025-12-30",
+        created_at: "2025-12-10",
+        status: "settled",
+    },
+];
 
+/* =======================
+   Component
+======================= */
+
+export default function ObligationsPage() {
     return (
-        <div className="flex-1 text-main-700">
-            <div className="flex items-center justify-between mb-6">
-                <h3 className="text font-bold">Product Categories</h3>
-                <Button color="primary" size="sm" rounded="md" onClick={() => setOpen(true)}>
-                    <i className="bi bi-plus-lg mr-2" />
-                    Add Category
-                </Button>
-            </div>
+        <div className="space-y-4">
+            {/* Toolbar */}
+            <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="flex gap-2">
+                    <select className="border rounded px-2 py-1 text-sm">
+                        <option value="">All Status</option>
+                        <option value="open">Open</option>
+                        <option value="overdue">Overdue</option>
+                        <option value="settled">Settled</option>
+                    </select>
 
-            {/* Categories Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {sampleCategories.map(category => (
-                    <div key={category.id} className="bg-main-100 rounded-lg shadow-sm border border-main-200 p-5 hover:shadow-md transition-shadow">
-                        <div className="flex items-start justify-between">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                                    <i className="bi bi-tag text-primary" />
-                                </div>
-                                <div>
-                                    <h4 className="font-semibold">{category.name}</h4>
-                                    <p className="text-sm text-main-500">{category.productCount} products</p>
-                                </div>
-                            </div>
-                            <div className="flex gap-1">
-                                <button className="p-1.5 hover:bg-main-200 rounded"><i className="bi bi-pencil text-sm" /></button>
-                                <button className="p-1.5 hover:bg-main-200 rounded"><i className="bi bi-trash text-sm" /></button>
-                            </div>
-                        </div>
-                        <p className="text-sm text-main-600 mt-3">{category.description}</p>
-                    </div>
-                ))}
-            </div>
-
-            {/* Add Category Modal */}
-            <Modal open={open} onClose={handleClose} size="md" position="center" blur closeOnBackdrop closeOnEsc>
-                <div className={`bg-main-100 rounded-lg shadow-xl overflow-hidden ${open ? "animation-zoom-in" : ""}`}>
-                    <div className="flex items-center justify-between px-6 py-4 text-main-700">
-                        <h3 className="text-lg font-semibold flex items-center gap-2">
-                            <i className="bi bi-tags" />
-                            Add New Category
-                        </h3>
-                        <button onClick={handleClose}><i className="bi bi-x-lg" /></button>
-                    </div>
-                    <form className="p-6 space-y-4">
-                        <TextInput label="Category Name" labelBgColor="bg-main-100" color="primary" size="md" rounded="md"
-                            value={formData.name} onChange={e => setFormData(p => ({ ...p, name: e.target.value }))} required />
-                        <TextInput label="Description" labelBgColor="bg-main-100" color="primary" size="md" rounded="md"
-                            value={formData.description} onChange={e => setFormData(p => ({ ...p, description: e.target.value }))} />
-                        <div className="flex justify-end gap-3 pt-4 border-t border-main-200">
-                            <Button color="neutral" size="sm" variant="outline" onClick={handleClose}>Cancel</Button>
-                            <Button color="primary" size="sm"><i className="bi bi-check-lg mr-2" />Add Category</Button>
-                        </div>
-                    </form>
+                    <select className="border rounded px-2 py-1 text-sm">
+                        <option value="">All Type</option>
+                        <option value="dr">Payables (DR)</option>
+                        <option value="cr">Receivables (CR)</option>
+                    </select>
                 </div>
-            </Modal>
+
+                <div className="flex gap-2">
+                    <Button size="sm" color={"primary"}>Export PDF</Button>
+                    <Button size="sm" color={"primary"}>Export Excel</Button>
+                </div>
+            </div>
+
+            {/* Table */}
+            <CollapsibleTable
+                data={obligations}
+                columns={columns}
+                rowsPerPage={5}
+            />
         </div>
     );
 }
-

@@ -11,8 +11,10 @@ import { Dashboard } from "./features/home/pages/Dashboard";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { Roles } from "./features/iam/pages/Roles";
 import UsersPage from "./features/iam/pages/Users";
-import { Products } from "./features/products/pages/Products";
-import { Categories } from "./features/products/pages/Categories";
+import  Ledger  from "./features/products/pages/Products";
+import ObligationsPage from "./features/products/pages/Categories";
+import Budgets from "./features/products/pages/Budgets";
+import Accounts from "./features/products/pages/Accounts";
 import { Services } from "./features/services/pages/Services";
 import { Sales } from "./features/sales/pages/Sales";
 import { Expenses } from "./features/expenses/pages/Expenses";
@@ -45,9 +47,11 @@ function App() {
             <Route path="/roles" element={<Roles />} />
             <Route path="/users" element={<UsersPage />} />
             {/* Products & Services */}
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/categories" element={<Categories />} />
+            <Route path="/products" element={<Ledger />} />
+            <Route path="/products/categories" element={<ObligationsPage />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/budgets" element={<Budgets />} />
+            <Route path="/accounts" element={<Accounts />} />
             {/* Business */}
             <Route path="/sales" element={<Sales />} />
             <Route path="/expenses" element={<Expenses />} />

@@ -1,0 +1,184 @@
+import CollapsibleTable, { type Column } from "../../../components/ui/Table";
+import { Button } from "../../../components/ui/Buttons";
+
+/* =======================
+   Row type
+======================= */
+
+type BudgetRow = {
+    id: number;
+    category: string;
+    account: string;
+    planned_amount: number;
+    actual_amount: number;
+    period: string; // e.g. "Jan 2026"
+    status: "on-track" | "over-budget" | "under-budget";
+};
+
+/* =======================
+   Columns
+======================= */
+
+const columns: Column<BudgetRow>[] = [
+    {
+        key: "category",
+        header: "Category",
+        sortable: true,
+        priority: 10,
+    },
+    {
+        key: "account",
+        header: "Account",
+        sortable: true,
+        priority: 8,
+    },
+    {
+        key: "planned_amount",
+        header: "Planned",
+        sortable: true,
+        priority: 9,
+        render: row => (
+            <span className="font-semibold text-blue-700">
+                {row.planned_amount.toLocaleString()} TZS
+            </span>
+        ),
+    },
+    {
+        key: "actual_amount",
+        header: "Actual",
+        sortable: true,
+        priority: 9,
+        render: row => (
+            <span
+                className={`font-semibold ${row.actual_amount > row.planned_amount
+                        ? "text-red-600"
+                        : "text-green-600"
+                    }`}
+            >
+                {row.actual_amount.toLocaleString()} TZS
+            </span>
+        ),
+    },
+    {
+        key: "status",
+        header: "Status",
+        sortable: true,
+        priority: 7,
+        render: row => (
+            <span
+                className={`px-2 py-0.5 rounded text-xs font-semibold ${row.status === "on-track"
+                        ? "bg-green-100 text-green-700"
+                        : row.status === "over-budget"
+                            ? "bg-red-100 text-red-700"
+                            : "bg-yellow-100 text-yellow-700"
+                    }`}
+            >
+                {row.status}
+            </span>
+        ),
+    },
+    {
+        key: "period",
+        header: "Period",
+        sortable: true,
+        priority: 6,
+    },
+    {
+        key: "actions",
+        header: "Actions",
+        sortable: false,
+        priority: 9,
+        render: () => (
+            <div className="flex gap-2">
+                <Button size="xs" color="primary">Edit</Button>
+                <Button size="xs" color="error">Delete</Button>
+            </div>
+        ),
+    },
+];
+
+/* =======================
+   Data
+======================= */
+
+const budgets: BudgetRow[] = [
+    {
+        id: 1,
+        category: "Rent",
+        account: "Bank",
+        planned_amount: 800000,
+        actual_amount: 800000,
+        period: "Jan 2026",
+        status: "on-track",
+    },
+    {
+        id: 2,
+        category: "Utilities",
+        account: "Bank",
+        planned_amount: 300000,
+        actual_amount: 350000,
+        period: "Jan 2026",
+        status: "over-budget",
+    },
+    {
+        id: 3,
+        category: "Transport",
+        account: "Cash",
+        planned_amount: 150000,
+        actual_amount: 90000,
+        period: "Jan 2026",
+        status: "under-budget",
+    },
+    {
+        id: 4,
+        category: "Food",
+        account: "Cash",
+        planned_amount: 400000,
+        actual_amount: 420000,
+        period: "Jan 2026",
+        status: "over-budget",
+    },
+];
+
+/* =======================
+   Component
+======================= */
+
+export default function BudgetPage() {
+    return (
+        <div className="space-y-4">
+            {/* Toolbar */}
+            <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="flex gap-2">
+                    <select className="border rounded px-2 py-1 text-sm">
+                        <option value="">All Periods</option>
+                        <option>Jan 2026</option>
+                        <option>Feb 2026</option>
+                    </select>
+
+                    <select className="border rounded px-2 py-1 text-sm">
+                        <option value="">All Accounts</option>
+                        <option>Cash</option>
+                        <option>Bank</option>
+                    </select>
+                </div>
+
+                <div className="flex gap-2">
+                    <Button size="sm" color="primary">
+                        Add Budget
+                    </Button>
+                    <Button size="sm" color={"primary"}>
+                        Export Excel
+                    </Button>
+                </div>
+            </div>
+
+            {/* Table */}
+            <CollapsibleTable
+                data={budgets}
+                columns={columns}
+                rowsPerPage={5}
+            />
+        </div>
+    );
+}
