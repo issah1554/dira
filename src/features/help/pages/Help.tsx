@@ -3,18 +3,18 @@ import { Button } from "../../../components/ui/Buttons";
 import { TextInput } from "../../../components/ui/TextInput";
 
 const faqItems = [
-    { question: "How do I add a new product?", answer: "Navigate to Products & Services > Products, then click the 'Add Product' button to open the product form." },
-    { question: "How can I export my sales data?", answer: "Go to the Sales page and click the 'Export' button. You can export data in CSV or Excel format." },
-    { question: "How do I manage user permissions?", answer: "Access IAM > Roles to create roles with specific permissions, then assign these roles to users in IAM > Users." },
-    { question: "Can I customize my dashboard?", answer: "Dashboard customization is coming soon. Currently, the dashboard shows a default set of widgets." },
-    { question: "How do I generate reports?", answer: "Go to Reports page, select the report type you need, and click 'Generate'. You can then download or print the report." },
+    { question: "How do I add a new task?", answer: "Navigate to Tasks > My Tasks, then click the 'Add Task' button to create a new todo item." },
+    { question: "How can I track my expenses?", answer: "Go to Finance > Expenses and click 'Add Expense' to record your spending. You can categorize and track all your expenses." },
+    { question: "How do I create a budget?", answer: "Access Finance > Budgets to create and manage your monthly budgets. Set limits for different categories and track your progress." },
+    { question: "Can I customize my dashboard?", answer: "Dashboard customization is coming soon. Currently, the dashboard shows your financial overview and pending tasks." },
+    { question: "How do I generate reports?", answer: "Go to Reports page, select the report type you need (financial or task reports), and click 'Generate'. You can then download or print the report." },
 ];
 
 const helpCategories = [
     { name: "Getting Started", icon: "bi-rocket-takeoff", articles: 12 },
-    { name: "Products & Inventory", icon: "bi-box", articles: 8 },
-    { name: "Sales & Invoicing", icon: "bi-cart", articles: 15 },
-    { name: "User Management", icon: "bi-people", articles: 6 },
+    { name: "Task Management", icon: "bi-check-circle", articles: 8 },
+    { name: "Finance & Budgeting", icon: "bi-wallet2", articles: 15 },
+    { name: "Accounts & Ledger", icon: "bi-bank", articles: 6 },
     { name: "Reports & Analytics", icon: "bi-bar-chart", articles: 10 },
     { name: "Troubleshooting", icon: "bi-wrench", articles: 20 },
 ];
@@ -38,11 +38,11 @@ export function Help() {
                 <h2 className="text-2xl font-bold mb-2">How can we help you?</h2>
                 <p className="text-main-500 mb-4">Search our knowledge base or browse categories below</p>
                 <div className="max-w-xl mx-auto">
-                    <TextInput 
-                        color="primary" 
-                        size="lg" 
-                        rounded="lg" 
-                        placeholder="Search for help articles..." 
+                    <TextInput
+                        color="primary"
+                        size="lg"
+                        rounded="lg"
+                        placeholder="Search for help articles..."
                         value={searchQuery}
                         onChange={e => setSearchQuery(e.target.value)}
                     />
@@ -52,7 +52,7 @@ export function Help() {
             {/* Help Categories */}
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
                 {helpCategories.map(category => (
-                    <div key={category.name} 
+                    <div key={category.name}
                         className="bg-main-100 rounded-lg shadow-sm border border-main-200 p-4 text-center hover:shadow-md transition-shadow cursor-pointer hover:border-primary/30">
                         <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-3">
                             <i className={`bi ${category.icon} text-primary text-xl`} />
@@ -71,7 +71,7 @@ export function Help() {
                 <div className="divide-y divide-main-200">
                     {faqItems.map((faq, index) => (
                         <div key={index} className="p-4">
-                            <button 
+                            <button
                                 onClick={() => setExpandedFaq(expandedFaq === index ? null : index)}
                                 className="w-full flex items-center justify-between text-left font-medium hover:text-primary transition-colors"
                             >

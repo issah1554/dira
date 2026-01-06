@@ -69,23 +69,24 @@ export function Sidebar() {
                 <div className="py-4 space-y-3">
                     <NavItems
                         items={[
-                            { label: "Dashboard", to: "/home", icon: <i className="bi bi-house" /> },
+                            { label: "Dashboard", to: "/dashboard", icon: <i className="bi bi-house" /> },
                             {
-                                label: "TODO",
-                                icon: <i className="bi bi-people" />,
+                                label: "Tasks",
+                                icon: <i className="bi bi-check-circle" />,
                                 subItems: [
-                                    { label: "Users", to: "/users", icon: <i className="bi bi-person" /> },
-                                    { label: "Roles", to: "/roles", icon: <i className="bi bi-shield" /> },
+                                    { label: "My Tasks", to: "/todos", icon: <i className="bi bi-list-task" /> },
+                                    { label: "Categories", to: "/todos/categories", icon: <i className="bi bi-tag" /> },
                                 ],
                             },
                             {
                                 label: "Finance",
-                                icon: <i className="bi bi-box" />,
+                                icon: <i className="bi bi-wallet2" />,
                                 subItems: [
-                                    { label: "Ledger", to: "/products", icon: <i className="bi bi-box" /> },
-                                    { label: "Obligations", to: "/products/categories", icon: <i className="bi bi-tags" /> },
-                                    { label: "Accounts", to: "/accounts", icon: <i className="bi bi-gear" /> },
-                                    { label: "Budgets", to: "/budgets", icon: <i className="bi bi-gear" /> },
+                                    { label: "Ledger", to: "/finance/ledger", icon: <i className="bi bi-journal-text" /> },
+                                    { label: "Obligations", to: "/finance/obligations", icon: <i className="bi bi-receipt" /> },
+                                    { label: "Accounts", to: "/finance/accounts", icon: <i className="bi bi-bank" /> },
+                                    { label: "Budgets", to: "/finance/budgets", icon: <i className="bi bi-piggy-bank" /> },
+                                    { label: "Expenses", to: "/finance/expenses", icon: <i className="bi bi-cash-stack" /> },
                                 ],
                             },
                             { label: "Reports", to: "/reports", icon: <i className="bi bi-bar-chart" /> },

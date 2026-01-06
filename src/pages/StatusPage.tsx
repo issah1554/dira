@@ -12,7 +12,7 @@ type StatusType = "maintenance" | "not-found" | "unauthorized" | "error";
 const STATUS_CONFIG: Record<StatusType, StatusConfig> = {
     maintenance: {
         title: "We'll be back soon",
-        description: "Inv.max is currently undergoing scheduled maintenance. Please check back shortly.",
+        description: "Dira.me is currently undergoing scheduled maintenance. Please check back shortly.",
         cta: "Refresh",
         url: "/",
     },
@@ -48,14 +48,10 @@ export default function StatusPage({ status }: StatusPageProps) {
             {/* Header */}
             <header className="sticky top-0 z-50 bg-main-950/80 backdrop-blur border-b-2 border-main-800">
                 <div className="max-w-7xl mx-auto px-6 py-4 flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-main-800 flex items-center justify-center">
-                        <img
-                            src="/bag.svg"
-                            alt="Invomax logo"
-                            className="w-6 h-6 object-contain"
-                        />
+                    <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                        <i className="bi bi-compass text-primary text-2xl" />
                     </div>
-                    <h1 className="text-xl font-semibold">Inv.max</h1>
+                    <h1 className="text-xl font-semibold">Dira.me</h1>
                 </div>
             </header>
 
@@ -82,7 +78,7 @@ export default function StatusPage({ status }: StatusPageProps) {
             {/* Footer */}
             <footer className="mt-auto border-t border-main-800">
                 <div className="max-w-7xl mx-auto px-6 py-6 text-sm text-main-500 flex justify-between">
-                    <span>© {new Date().getFullYear()} Inv.max</span>
+                    <span>© {new Date().getFullYear()} Dira.me</span>
                     <span>Status Page</span>
                 </div>
             </footer>

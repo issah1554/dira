@@ -2,30 +2,30 @@ import { Link } from "react-router-dom";
 
 const statsCards = [
     { label: "Total Income", value: "$24,580", change: "+12.5%", trend: "up", icon: "bi-currency-dollar", color: "text-success", bg: "bg-success/10" },
-    { label: "Total Expenses", value: "$40,300", change: "+8.2%", trend: "up", icon: "bi-cart-check", color: "text-primary", bg: "bg-primary/10" },
-    { label: "Current Balance", value: "$892", change: "+5.1%", trend: "up", icon: "bi-people", color: "text-info", bg: "bg-info/10" },
-    { label: "Pending Bills", value: "$230,000", change: "-3.4%", trend: "down", icon: "bi-clock-history", color: "text-warning", bg: "bg-warning/10" },
+    { label: "Total Expenses", value: "$8,300", change: "+8.2%", trend: "up", icon: "bi-cash-stack", color: "text-error", bg: "bg-error/10" },
+    { label: "Current Balance", value: "$16,280", change: "+5.1%", trend: "up", icon: "bi-wallet2", color: "text-info", bg: "bg-info/10" },
+    { label: "Pending Tasks", value: "12", change: "-3.4%", trend: "down", icon: "bi-list-task", color: "text-warning", bg: "bg-warning/10" },
 ];
 
 const weeklyData = [
-    { day: "Mon", sales: 65 },
-    { day: "Tue", sales: 45 },
-    { day: "Wed", sales: 78 },
-    { day: "Thu", sales: 52 },
-    { day: "Fri", sales: 89 },
-    { day: "Sat", sales: 95 },
-    { day: "Sun", sales: 40 },
+    { day: "Mon", expenses: 65 },
+    { day: "Tue", expenses: 45 },
+    { day: "Wed", expenses: 78 },
+    { day: "Thu", expenses: 52 },
+    { day: "Fri", expenses: 89 },
+    { day: "Sat", expenses: 95 },
+    { day: "Sun", expenses: 40 },
 ];
 
 const quickActions = [
-    { label: "Add Transaction", icon: "bi-cart-plus", to: "/sales", color: "bg-primary" },
-    { label: "Add Account", icon: "bi-box-seam", to: "/products", color: "bg-success" },
+    { label: "Add Task", icon: "bi-plus-circle", to: "/todos", color: "bg-primary" },
+    { label: "Add Expense", icon: "bi-cash-coin", to: "/finance/expenses", color: "bg-error" },
     { label: "View Reports", icon: "bi-bar-chart", to: "/reports", color: "bg-info" },
-    { label: "Obligations", icon: "bi-people", to: "/users", color: "bg-warning" },
+    { label: "Manage Budget", icon: "bi-piggy-bank", to: "/finance/budgets", color: "bg-success" },
 ];
 
 export function Dashboard() {
-    const maxSales = Math.max(...weeklyData.map(d => d.sales));
+    const maxExpenses = Math.max(...weeklyData.map(d => d.expenses));
 
     return (
         <div className="flex-1 text-main-700">
@@ -68,10 +68,10 @@ export function Dashboard() {
 
             {/* Main Content Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-                {/* Weekly Sales Chart */}
+                {/* Weekly Expenses Chart */}
                 <div className="lg:col-span-2 bg-main-200 rounded-lg shadow-none border border-main-300 p-5">
                     <div className="flex items-center justify-between mb-4">
-                        <h3 className="font-semibold">Weekly Sales Overview</h3>
+                        <h3 className="font-semibold">Weekly Expenses Overview</h3>
                         <span className="text-sm text-main-500">This Week</span>
                     </div>
                     <div className="flex items-end justify-between h-48 gap-2">
@@ -80,7 +80,7 @@ export function Dashboard() {
                                 <div className="w-full bg-main-200 rounded-t-md relative" style={{ height: "100%" }}>
                                     <div
                                         className="absolute bottom-0 left-0 right-0 bg-primary rounded-t-md transition-all hover:bg-primary/80"
-                                        style={{ height: `${(data.sales / maxSales) * 100}%` }}
+                                        style={{ height: `${(data.expenses / maxExpenses) * 100}%` }}
                                     />
                                 </div>
                                 <span className="text-xs text-main-500">{data.day}</span>

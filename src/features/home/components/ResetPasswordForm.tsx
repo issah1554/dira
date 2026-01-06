@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
-import { Button } from "../../../components/Buttons";
-import { TextInput } from "../../../components/TextInput";
+import { Button } from "../../../components/ui/Buttons";
+import { TextInput } from "../../../components/ui/TextInput";
 import { Link } from "react-router-dom";
 
 interface ResetPasswordFormProps {
@@ -41,7 +41,7 @@ export default function ResetPasswordForm({
                         name="password"
                         placeholder="Enter new password"
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
                         required
                         rounded="none"
                     />
@@ -55,7 +55,7 @@ export default function ResetPasswordForm({
                         name="confirmPassword"
                         placeholder="Repeat new password"
                         value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)}
                         required
                         rounded="none"
                     />

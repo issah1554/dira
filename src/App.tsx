@@ -9,20 +9,17 @@ import StatusPage from "./pages/StatusPage";
 import { AppLayout } from "./components/layout/AppLayout";
 import { Dashboard } from "./features/home/pages/Dashboard";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import { Roles } from "./features/iam/pages/Roles";
-import UsersPage from "./features/iam/pages/Users";
-import  Ledger  from "./features/products/pages/LedgerPage";
-import ObligationsPage from "./features/products/pages/ObligationsPage";
-import Budgets from "./features/products/pages/BudgetPage";
-import Accounts from "./features/products/pages/Accounts";
-import { Services } from "./features/services/pages/Services";
-import { Sales } from "./features/sales/pages/Sales";
-import { Expenses } from "./features/expenses/pages/Expenses";
-import { Purchases } from "./features/purchases/pages/Purchases";
+import Ledger from "./features/finance/pages/LedgerPage";
+import ObligationsPage from "./features/finance/pages/ObligationsPage";
+import Budgets from "./features/finance/pages/BudgetPage";
+import Accounts from "./features/finance/pages/Accounts";
+import { Expenses } from "./features/finance/expenses/pages/Expenses";
 import { Reports } from "./features/reports/pages/Reports";
 import { Settings } from "./features/me/Settings";
 import { Help } from "./features/help/pages/Help";
 import { Notifications } from "./features/notifications/pages/Notifications";
+import {TodoList} from "./features/todo/pages/TodoList";
+import {TodoCategories} from "./features/todo/pages/TodoCategories";
 
 function App() {
   return (
@@ -42,21 +39,22 @@ function App() {
 
           {/* app layout */}
           <Route element={<AppLayout />}>
-            <Route path="/home" element={<Dashboard />} />
-            {/* IAM */}
-            <Route path="/roles" element={<Roles />} />
-            <Route path="/users" element={<UsersPage />} />
-            {/* Products & Services */}
-            <Route path="/products" element={<Ledger />} />
-            <Route path="/products/categories" element={<ObligationsPage />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/budgets" element={<Budgets />} />
-            <Route path="/accounts" element={<Accounts />} />
-            {/* Business */}
-            <Route path="/sales" element={<Sales />} />
-            <Route path="/expenses" element={<Expenses />} />
-            <Route path="/purchases" element={<Purchases />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+
+            {/* Todo Management */}
+            <Route path="/todos" element={<TodoList />} />
+            <Route path="/todos/categories" element={<TodoCategories />} />
+
+            {/* Finance Management */}
+            <Route path="/finance/ledger" element={<Ledger />} />
+            <Route path="/finance/obligations" element={<ObligationsPage />} />
+            <Route path="/finance/budgets" element={<Budgets />} />
+            <Route path="/finance/accounts" element={<Accounts />} />
+            <Route path="/finance/expenses" element={<Expenses />} />
+
+            {/* Reports & Analytics */}
             <Route path="/reports" element={<Reports />} />
+
             {/* Settings & Help */}
             <Route path="/settings" element={<Settings />} />
             <Route path="/help" element={<Help />} />
