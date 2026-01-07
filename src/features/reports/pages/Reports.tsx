@@ -2,7 +2,7 @@ import { Button } from "../../../components/ui/Buttons";
 
 const reportTypes = [
     { id: 1, name: "Sales Report", description: "Overview of sales performance", icon: "bi-graph-up-arrow", color: "text-success" },
-    { id: 2, name: "Expense Report", description: "Detailed expense breakdown", icon: "bi-graph-down-arrow", color: "text-error" },
+    { id: 2, name: "Expense Report", description: "Detailed expense breakdown", icon: "bi-graph-down-arrow", color: "text-danger" },
     { id: 3, name: "Inventory Report", description: "Current stock levels and movements", icon: "bi-box-seam", color: "text-info" },
     { id: 4, name: "Purchase Report", description: "Purchase orders and supplier analysis", icon: "bi-bag", color: "text-primary" },
     { id: 5, name: "Profit & Loss", description: "Financial performance summary", icon: "bi-currency-dollar", color: "text-warning" },
@@ -29,7 +29,7 @@ export function Reports() {
             {/* Report Types Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
                 {reportTypes.map(report => (
-                    <div key={report.id} 
+                    <div key={report.id}
                         className="bg-main-200 rounded-lg  border border-main-300 p-5 hover:scale-101 transition-all cursor-pointer hover:border-primary/60">
                         <div className="flex items-start gap-4">
                             <div className={`w-12 h-12 bg-main-200 rounded-lg flex items-center justify-center ${report.color}`}>

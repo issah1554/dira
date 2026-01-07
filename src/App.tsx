@@ -13,13 +13,12 @@ import Ledger from "./features/finance/pages/LedgerPage";
 import ObligationsPage from "./features/finance/pages/ObligationsPage";
 import Budgets from "./features/finance/pages/BudgetPage";
 import Accounts from "./features/finance/pages/Accounts";
-import { Expenses } from "./features/finance/expenses/pages/Expenses";
 import { Reports } from "./features/reports/pages/Reports";
 import { Settings } from "./features/me/Settings";
 import { Help } from "./features/help/pages/Help";
-import { Notifications } from "./features/notifications/pages/Notifications";
-import {TodoList} from "./features/todo/pages/TodoList";
-import {TodoCategories} from "./features/todo/pages/TodoCategories";
+import { Notifications } from "./features/notifications/Notifications";
+import { TodoList } from "./features/todo/pages/TodoList";
+import { TodoCategories } from "./features/todo/pages/TodoCategories";
 
 function App() {
   return (
@@ -39,7 +38,7 @@ function App() {
 
           {/* app layout */}
           <Route element={<AppLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/home" element={<Dashboard />} />
 
             {/* Todo Management */}
             <Route path="/todos" element={<TodoList />} />
@@ -50,7 +49,6 @@ function App() {
             <Route path="/finance/obligations" element={<ObligationsPage />} />
             <Route path="/finance/budgets" element={<Budgets />} />
             <Route path="/finance/accounts" element={<Accounts />} />
-            <Route path="/finance/expenses" element={<Expenses />} />
 
             {/* Reports & Analytics */}
             <Route path="/reports" element={<Reports />} />

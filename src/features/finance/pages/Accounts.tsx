@@ -172,7 +172,7 @@ export default function Accounts() {
             {/* Accounts Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {sampleAccounts.map(account => (
-                    <div key={account.id} className="bg-main-200/60 rounded-lg  border border-main-300 p-5 hover:border-primary/70 hover:border-2 transition-shadow">
+                    <div key={account.id} className="bg-main-200/60 rounded-lg  border border-main-300 p-5 hover:ring-primary/70 hover:ring-2 transition-shadow">
                         <div className="flex items-start justify-between mb-3">
                             <div className="flex items-center gap-3">
                                 <div className={`w-10 h-10 ${getTypeColor(account.type)} rounded-lg flex items-center justify-center`}>

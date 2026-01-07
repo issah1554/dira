@@ -97,7 +97,7 @@ export function TextInput({
     };
 
     const baseClasses =
-        "peer font-sans shadow-sm focus:outline-none focus:ring-2 transition disabled:opacity-60 disabled:cursor-not-allowed";
+        "peer font-sans shadow-none focus:outline-none focus:ring-2 transition disabled:opacity-60 disabled:cursor-not-allowed";
 
     const colorClasses = {
         primary: {
@@ -131,9 +131,9 @@ export function TextInput({
             text: "text-warning"
         },
         error: {
-            input: "bg-transparent border border-error text-error placeholder-error/60 focus:ring-error",
+            input: "bg-transparent border border-danger text-danger placeholder-danger/60 focus:ring-danger",
             label: `${labelBgColor ?? "bg-white"} dark:bg-gray-900`,
-            text: "text-error"
+            text: "text-danger"
         },
         info: {
             input: "bg-transparent border border-info text-info placeholder-info/60 focus:ring-info",
@@ -198,7 +198,7 @@ export function TextInput({
                     >
                         {label}
                         {required && (
-                            <span className="ml-0.5 text-error">*</span>
+                            <span className="ml-0.5 text-danger">*</span>
                         )}
                     </label>
                 )}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button } from "../../../components/ui/Buttons";
+import { Button } from "../../components/ui/Buttons";
 
 type NotificationType = "all" | "unread" | "sales" | "system" | "users";
 
@@ -84,21 +84,21 @@ export function Notifications() {
                         onClick={() => setActiveFilter(tab.key)}
                         className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors
                             ${activeFilter === tab.key
-                                ? "bg-primary text-white"
+                                ? "bg-primary text-main-50"
                                 : "bg-main-100 hover:bg-main-200 text-main-600"
                             }`}
                     >
                         <i className={`bi ${tab.icon}`} />
                         {tab.label}
                         {tab.key === "unread" && unreadCount > 0 && (
-                            <span className="bg-error text-white text-xs px-1.5 py-0.5 rounded-full">{unreadCount}</span>
+                            <span className="bg-danger text-white text-xs px-1.5 py-0.5 rounded-full">{unreadCount}</span>
                         )}
                     </button>
                 ))}
             </div>
 
             {/* Notifications List */}
-            <div className="bg-main-100 rounded-lg shadow-sm border border-main-200">
+            <div className="bg-main-200 rounded-lg border border-main-300">
                 {filteredNotifications.length === 0 ? (
                     <div className="p-8 text-center">
                         <div className="w-16 h-16 bg-main-200 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -111,7 +111,7 @@ export function Notifications() {
                         {filteredNotifications.map(notification => (
                             <div
                                 key={notification.id}
-                                className={`flex items-start gap-4 p-4 hover:bg-main-50 transition-colors ${!notification.read ? "bg-primary/5" : ""}`}
+                                className={`flex items-start gap-4 p-4 hover:bg-main-300 transition-colors ${!notification.read ? "bg-primary/10" : ""}`}
                             >
                                 <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${notification.iconBg}`}>
                                     <i className={`bi ${notification.icon}`} />
@@ -140,7 +140,7 @@ export function Notifications() {
                                         )}
                                         <button
                                             onClick={() => deleteNotification(notification.id)}
-                                            className="text-xs text-error hover:underline"
+                                            className="text-xs text-danger hover:underline"
                                         >
                                             Delete
                                         </button>

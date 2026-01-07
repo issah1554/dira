@@ -11,7 +11,7 @@ type ObligationRow = {
     counterparty_name: string;
     dc: "dr" | "cr";                 // dr = payable, cr = receivable (NOT shown)
     original_amount: number;
-    remaining_amount: number;
+    paid_amount: number;
     start_date: string;
     due_date: string;
     created_at: string;
@@ -50,8 +50,8 @@ const columns: Column<ObligationRow>[] = [
         ),
     },
     {
-        key: "remaining_amount",
-        header: "Remaining",
+        key: "paid_amount",
+        header: "Paid Amount",
         sortable: true,
         priority: 8,
         render: row => (
@@ -59,7 +59,7 @@ const columns: Column<ObligationRow>[] = [
                 className={`font-semibold ${row.dc === "dr" ? "text-red-500" : "text-green-500"
                     }`}
             >
-                {row.remaining_amount.toLocaleString()} TZS
+                {row.paid_amount.toLocaleString()} TZS
             </span>
         ),
     },
@@ -124,7 +124,7 @@ const obligations: ObligationRow[] = [
         counterparty_name: "Electricity Company",
         dc: "dr",
         original_amount: 300000,
-        remaining_amount: 120000,
+        paid_amount: 120000,
         start_date: "2026-01-01",
         due_date: "2026-01-10",
         created_at: "2026-01-01",
@@ -136,7 +136,7 @@ const obligations: ObligationRow[] = [
         counterparty_name: "ABC Client Ltd",
         dc: "cr",
         original_amount: 850000,
-        remaining_amount: 850000,
+        paid_amount: 850000,
         start_date: "2026-01-02",
         due_date: "2026-01-15",
         created_at: "2026-01-02",
@@ -148,7 +148,7 @@ const obligations: ObligationRow[] = [
         counterparty_name: "ISP Provider",
         dc: "dr",
         original_amount: 120000,
-        remaining_amount: 120000,
+        paid_amount: 120000,
         start_date: "2025-12-20",
         due_date: "2026-01-05",
         created_at: "2025-12-20",
@@ -160,7 +160,7 @@ const obligations: ObligationRow[] = [
         counterparty_name: "Retail Partner",
         dc: "cr",
         original_amount: 500000,
-        remaining_amount: 0,
+        paid_amount: 0,
         start_date: "2025-12-10",
         due_date: "2025-12-30",
         created_at: "2025-12-10",

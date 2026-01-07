@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const statsCards = [
     { label: "Total Income", value: "$24,580", change: "+12.5%", trend: "up", icon: "bi-currency-dollar", color: "text-success", bg: "bg-success/10" },
-    { label: "Total Expenses", value: "$8,300", change: "+8.2%", trend: "up", icon: "bi-cash-stack", color: "text-error", bg: "bg-error/10" },
+    { label: "Total Expenses", value: "$8,300", change: "+8.2%", trend: "up", icon: "bi-cash-stack", color: "text-danger", bg: "bg-danger/10" },
     { label: "Current Balance", value: "$16,280", change: "+5.1%", trend: "up", icon: "bi-wallet2", color: "text-info", bg: "bg-info/10" },
     { label: "Pending Tasks", value: "12", change: "-3.4%", trend: "down", icon: "bi-list-task", color: "text-warning", bg: "bg-warning/10" },
 ];
@@ -19,7 +19,7 @@ const weeklyData = [
 
 const quickActions = [
     { label: "Add Task", icon: "bi-plus-circle", to: "/todos", color: "bg-primary" },
-    { label: "Add Expense", icon: "bi-cash-coin", to: "/finance/expenses", color: "bg-error" },
+    { label: "Add Expense", icon: "bi-cash-coin", to: "/finance/expenses", color: "bg-danger" },
     { label: "View Reports", icon: "bi-bar-chart", to: "/reports", color: "bg-info" },
     { label: "Manage Budget", icon: "bi-piggy-bank", to: "/finance/budgets", color: "bg-success" },
 ];
@@ -53,7 +53,7 @@ export function Dashboard() {
                             <div>
                                 <p className="text-sm text-main-500">{stat.label}</p>
                                 <p className="text-2xl font-bold mt-1">{stat.value}</p>
-                                <p className={`text-xs mt-1 flex items-center gap-1 ${stat.trend === "up" ? "text-success" : "text-error"}`}>
+                                <p className={`text-xs mt-1 flex items-center gap-1 ${stat.trend === "up" ? "text-success" : "text-danger"}`}>
                                     <i className={`bi ${stat.trend === "up" ? "bi-arrow-up" : "bi-arrow-down"}`} />
                                     {stat.change} from last week
                                 </p>

@@ -24,7 +24,7 @@ function SidebarHeader() {
                         onClick={togglePin}
                         className={`ml-auto p-1 transition-colors cursor-pointer w-8 h-8 rounded-full flex items-center justify-center
                             ${isPinned
-                                ? 'text-primary hover:bg-primary/10'
+                                ? 'text-accent hover:bg-accent/10'
                                 : 'text-main-500 hover:text-main-700 hover:bg-main-300'
                             }`}
                         title={isPinned ? "Unpin sidebar" : "Pin sidebar"}
@@ -69,7 +69,7 @@ export function Sidebar() {
                 <div className="py-4 space-y-3">
                     <NavItems
                         items={[
-                            { label: "Dashboard", to: "/dashboard", icon: <i className="bi bi-house" /> },
+                            { label: "Dashboard", to: "/home", icon: <i className="bi bi-house" /> },
                             {
                                 label: "Tasks",
                                 icon: <i className="bi bi-check-circle" />,
@@ -82,11 +82,10 @@ export function Sidebar() {
                                 label: "Finance",
                                 icon: <i className="bi bi-wallet2" />,
                                 subItems: [
-                                    { label: "Ledger", to: "/finance/ledger", icon: <i className="bi bi-journal-text" /> },
+                                    { label: "Transactions", to: "/finance/ledger", icon: <i className="bi bi-journal-text" /> },
                                     { label: "Obligations", to: "/finance/obligations", icon: <i className="bi bi-receipt" /> },
                                     { label: "Accounts", to: "/finance/accounts", icon: <i className="bi bi-bank" /> },
                                     { label: "Budgets", to: "/finance/budgets", icon: <i className="bi bi-piggy-bank" /> },
-                                    { label: "Expenses", to: "/finance/expenses", icon: <i className="bi bi-cash-stack" /> },
                                 ],
                             },
                             { label: "Reports", to: "/reports", icon: <i className="bi bi-bar-chart" /> },
