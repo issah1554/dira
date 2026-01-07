@@ -232,10 +232,10 @@ export default function CollapsibleTable<T extends BaseRow>({
                 {hasHiddenColumns && (
                   <button
                     onClick={toggleAllRows}
-                    className={`transition-transform ${allExpanded ? "rotate-90" : ""
-                      }`}
-                  >
-                    <i className="bi bi-plus-circle hover:text-accent" />
+                    title={allExpanded ? "Collapse all" : "Expand all"}
+                    className={`transition-transform ${allExpanded ? "text-accent" : ""}`} >
+                    
+                    <i className={`bi ${allExpanded ? "bi-dash-circle ": "bi-plus-circle"} over:text-accent`} />
                   </button>
                 )}
               </th>
@@ -286,7 +286,7 @@ export default function CollapsibleTable<T extends BaseRow>({
 
                 return (
                   <React.Fragment key={row.id}>
-                    <tr className={`${expanded ? "hover:bg-main-100" : "hover:bg-main-300/40"}`}>
+                    <tr className={`${expanded ? "bg-main-100 " : "bg-main-200 hover:bg-main-300"} `}>
                       <td className="px-4 py-2">
                         {hasHiddenColumns && (
                           <button onClick={() => toggleRow(row.id)}>
@@ -315,7 +315,7 @@ export default function CollapsibleTable<T extends BaseRow>({
                     </tr>
 
                     {expanded && (
-                      <tr className="bg-main-100">
+                      <tr className="bg-main-100 border-b border-main-300">
                         <td
                           colSpan={visibleColumnsCount + 1}
                           className="px-4 py-2 space-y-1"
