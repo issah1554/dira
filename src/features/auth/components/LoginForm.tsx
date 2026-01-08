@@ -28,7 +28,7 @@ export default function LoginForm({ onLogin, loading = false, error }: LoginForm
                     </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="grid gap-4">
+                <form className="grid gap-4">
                     <TextInput
                         label="Email Address"
                         labelBgColor="bg-main-200"
@@ -73,7 +73,7 @@ export default function LoginForm({ onLogin, loading = false, error }: LoginForm
                         </Link>
                     </div>
 
-                    <Button color="primary" size="lg" rounded="full">
+                    <Button color="primary" size="lg" rounded="full" onClick={handleSubmit}>
                         {loading ? (
                             <>
                                 <span

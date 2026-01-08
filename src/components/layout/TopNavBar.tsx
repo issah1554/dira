@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import "bootstrap-icons/font/bootstrap-icons.css";
-// import useAuth from "../../features/auth/hooks/useAuth";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 import { useTheme } from "../../contexts/ThemeContext";
 import Avatar from "../ui/Avatar";
 
@@ -10,18 +9,15 @@ interface TopNavProps {
     isMobile: boolean;
 }
 
-export default function TopNav({
-    toggleSidebar,
-    isMobile,
-}: TopNavProps) {
-
+export default function TopNav({ toggleSidebar, isMobile }: TopNavProps) {
+    const { user, logout } = useAuth();
+    const navigate = useNavigate();
     const { toggleTheme } = useTheme();
-    // const { user } = useAuth();
 
     const [open, setOpen] = useState<"notif" | "msg" | "profile" | null>(null);
     const navRef = useRef<HTMLDivElement>(null);
 
-    /* Close dropdowns on click outside */
+    // Close dropdowns on click outside
     useEffect(() => {
         const handler = (e: MouseEvent) => {
             if (navRef.current && !navRef.current.contains(e.target as Node)) {
@@ -31,6 +27,11 @@ export default function TopNav({
         document.addEventListener("mousedown", handler);
         return () => document.removeEventListener("mousedown", handler);
     }, []);
+
+    const handleLogout = async () => {
+        await logout();
+        navigate("/auth/login");
+    };
 
     return (
         <nav
@@ -52,10 +53,10 @@ export default function TopNav({
 
                 {/* Right section */}
                 <div className="flex items-center gap-2 sm:gap-4">
+                    {/* Fullscreen toggle */}
                     <button
                         onClick={(e) => {
                             const icon = e.currentTarget.querySelector("i");
-
                             if (!document.fullscreenElement) {
                                 document.documentElement.requestFullscreen();
                                 icon?.classList.replace("bi-fullscreen", "bi-fullscreen-exit");
@@ -69,7 +70,6 @@ export default function TopNav({
                     >
                         <i className="bi bi-fullscreen text-xl" />
                     </button>
-
 
                     {/* Theme toggle */}
                     <button
@@ -116,29 +116,21 @@ export default function TopNav({
                         )}
                     </div>
 
-
-
                     {/* Profile */}
                     <div className="relative">
                         <button
                             onClick={() => setOpen(open === "profile" ? null : "profile")}
                             className="focus:outline-none cursor-pointer "
                         >
-                            <Avatar
-                                alt="Issah Xevier"
-                                size={32}
-                            />
+                            <Avatar alt={user?.email ?? "User"} size={32} />
                         </button>
 
                         {open === "profile" && (
                             <div className="absolute right-0 mt-2 w-40 bg-main-200 border border-main-300 rounded-md shadow-lg text-sm z-50">
                                 <div className="px-4 py-4 text-center border-b border-main-300">
-                                    <Avatar
-                                        alt={"User"}
-                                        size={48}
-                                    />
-                                    <div className="mt-2 font-semibold">{ "User"}</div>
-                                    <div className="text-xs text-main-500">{"user@example.com"}</div>                                    
+                                    <Avatar alt={user?.email ?? "User"} size={48} />
+                                    <div className="mt-2 font-semibold">{user?.email?.split("@")[0] ?? "User"}</div>
+                                    <div className="text-xs text-main-500">{user?.email ?? "user@example.com"}</div>
                                 </div>
 
                                 <Link
@@ -148,12 +140,12 @@ export default function TopNav({
                                     <i className="bi bi-gear" /> Settings
                                 </Link>
 
-                                <Link
-                                    to="/auth/logout"
-                                    className="flex items-center gap-2 px-4 py-2 text-danger-600 border-t hover:border border-main-300 hover:bg-danger-100 hover:border-danger-300 rounded-b-sm"
+                                <button
+                                    onClick={handleLogout}
+                                    className="flex items-center gap-2 px-4 py-2 w-full text-danger-600 border-t hover:border border-main-300 hover:bg-danger-100 hover:border-danger-300 rounded-b-sm"
                                 >
                                     <i className="bi bi-box-arrow-right" /> Logout
-                                </Link>
+                                </button>
                             </div>
                         )}
                     </div>

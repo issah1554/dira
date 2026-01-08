@@ -1,11 +1,17 @@
+// src/pages/auth/LoginPage.tsx
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
+import { useAuth } from "../../../contexts/AuthContext";
 
 export default function LoginPage() {
-    const handleLogin = async (email: string, password: string) => {
-        console.log("Login attempt:", email, password);
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        alert(`Welcome, ${email}!`);
-    };
+    const { login, loading, error, user } = useAuth();
+    const navigate = useNavigate();
 
-    return <LoginForm onLogin={handleLogin} />;
+    // Redirect if already logged in
+    useEffect(() => {
+        if (user) navigate("/home");
+    }, [user]);
+
+    return <LoginForm onLogin={login} loading={loading} error={error ?? undefined} />;
 }

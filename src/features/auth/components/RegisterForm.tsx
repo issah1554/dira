@@ -21,7 +21,10 @@ export default function RegisterForm({
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        if (password !== confirmPassword) return;
+        if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+        }
         await onRegister(email, password);
     };
 
@@ -32,7 +35,7 @@ export default function RegisterForm({
                     <div className="alert alert-danger">{error}</div>
                 )}
 
-                <form onSubmit={handleSubmit} className="grid gap-3">
+                <form  className="grid gap-3">
                     <TextInput
                         color="primary"
                         labelBgColor="bg-main-200"
@@ -87,7 +90,7 @@ export default function RegisterForm({
 
                     </div>
 
-                    <Button color="primary" size="lg" rounded="full">
+                    <Button color="primary" size="lg" rounded="full" onClick={handleSubmit}>
                         {loading ? (
                             <>
                                 <span
