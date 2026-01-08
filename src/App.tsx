@@ -19,10 +19,13 @@ import { Help } from "./features/help/pages/Help";
 import { Notifications } from "./features/notifications/Notifications";
 import { TodoList } from "./features/todo/pages/TodoList";
 import { TodoCategories } from "./features/todo/pages/TodoCategories";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function App() {
   return (
     <BrowserRouter>
+      <AuthProvider>
+
       <ThemeProvider>
         <Routes>
           {/* public */}
@@ -62,7 +65,8 @@ function App() {
           {/* fallback */}
           <Route path="*" element={<StatusPage status="not-found" />} />
         </Routes>
-      </ThemeProvider>
+        </ThemeProvider>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

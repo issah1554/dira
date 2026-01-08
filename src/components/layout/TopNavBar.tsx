@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import useAuth from "../../features/auth/hooks/useAuth";
+// import useAuth from "../../features/auth/hooks/useAuth";
 import { useTheme } from "../../contexts/ThemeContext";
 import Avatar from "../ui/Avatar";
 
@@ -16,7 +16,7 @@ export default function TopNav({
 }: TopNavProps) {
 
     const { toggleTheme } = useTheme();
-    const { user } = useAuth();
+    // const { user } = useAuth();
 
     const [open, setOpen] = useState<"notif" | "msg" | "profile" | null>(null);
     const navRef = useRef<HTMLDivElement>(null);
@@ -134,11 +134,11 @@ export default function TopNav({
                             <div className="absolute right-0 mt-2 w-40 bg-main-200 border border-main-300 rounded-md shadow-lg text-sm z-50">
                                 <div className="px-4 py-4 text-center border-b border-main-300">
                                     <Avatar
-                                        alt={user?.name || "User"}
+                                        alt={"User"}
                                         size={48}
                                     />
-                                    <div className="mt-2 font-semibold">{user?.name || "User"}</div>
-                                    <div className="text-xs text-main-500">{user?.email || "user@example.com"}</div>                                    
+                                    <div className="mt-2 font-semibold">{ "User"}</div>
+                                    <div className="text-xs text-main-500">{"user@example.com"}</div>                                    
                                 </div>
 
                                 <Link
