@@ -20,51 +20,52 @@ import { Notifications } from "./features/notifications/Notifications";
 import { TodoList } from "./features/todo/pages/TodoList";
 import { TodoCategories } from "./features/todo/pages/TodoCategories";
 import { AuthProvider } from "./contexts/AuthContext";
+import ProtectedRoute from "./components/layout/ProtectedRoute";
 
 function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
 
-      <ThemeProvider>
-        <Routes>
-          {/* public */}
-          <Route path="/" element={<LandingPage />} />
+        <ThemeProvider>
+          <Routes>
+            {/* public */}
+            <Route path="/" element={<LandingPage />} />
 
-          {/* auth */}
-          <Route path="/auth" element={<AuthLayout />}>
-            <Route path="login" element={<LoginPage />} />
-            <Route path="register" element={<RegisterPage />} />
-            <Route path="forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="reset-password" element={<ResetPasswordPage />} />
-          </Route>
+            {/* auth */}
+            <Route path="/auth" element={<AuthLayout />}>
+              <Route path="login" element={<LoginPage />} />
+              <Route path="register" element={<RegisterPage />} />
+              <Route path="forgot-password" element={<ForgotPasswordPage />} />
+              <Route path="reset-password" element={<ResetPasswordPage />} />
+            </Route>
 
-          {/* app layout */}
-          <Route element={<AppLayout />}>
-            <Route path="/home" element={<Dashboard />} />
+            {/* app layout */}
+            <Route element={<ProtectedRoute><AppLayout /></ProtectedRoute>}>
+              <Route path="/home" element={<Dashboard />} />
 
-            {/* Todo Management */}
-            <Route path="/todos" element={<TodoList />} />
-            <Route path="/todos/categories" element={<TodoCategories />} />
+              {/* Todo Management */}
+              <Route path="/todos" element={<TodoList />} />
+              <Route path="/todos/categories" element={<TodoCategories />} />
 
-            {/* Finance Management */}
-            <Route path="/finance/ledger" element={<Ledger />} />
-            <Route path="/finance/obligations" element={<ObligationsPage />} />
-            <Route path="/finance/budgets" element={<Budgets />} />
-            <Route path="/finance/accounts" element={<Accounts />} />
+              {/* Finance Management */}
+              <Route path="/finance/ledger" element={<Ledger />} />
+              <Route path="/finance/obligations" element={<ObligationsPage />} />
+              <Route path="/finance/budgets" element={<Budgets />} />
+              <Route path="/finance/accounts" element={<Accounts />} />
 
-            {/* Reports & Analytics */}
-            <Route path="/reports" element={<Reports />} />
+              {/* Reports & Analytics */}
+              <Route path="/reports" element={<Reports />} />
 
-            {/* Settings & Help */}
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/help" element={<Help />} />
-            <Route path="/notifications" element={<Notifications />} />
-          </Route>
+              {/* Settings & Help */}
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/help" element={<Help />} />
+              <Route path="/notifications" element={<Notifications />} />
+            </Route>
 
-          {/* fallback */}
-          <Route path="*" element={<StatusPage status="not-found" />} />
-        </Routes>
+            {/* fallback */}
+            <Route path="*" element={<StatusPage status="not-found" />} />
+          </Routes>
         </ThemeProvider>
       </AuthProvider>
     </BrowserRouter>
