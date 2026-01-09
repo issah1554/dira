@@ -9,11 +9,7 @@ export default function AuthLayout() {
                     to="/"
                     className="absolute top-4 left-4 flex items-center gap-2 text-primary font-bold text-xl"
                 >
-                    <img
-                        src="/bag.svg"
-                        alt="Logo"
-                        className="w-11 h-11 object-contain"
-                    />
+                    <i className="bi bi-compass text-4xl"></i>
                     <span>Inv.max</span>
                 </Link>
 

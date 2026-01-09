@@ -3,7 +3,7 @@ import type { FormEvent } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../../../components/ui/Buttons";
 import { TextInput } from "../../../components/ui/TextInput";
-
+import { Toast } from "../../../components/ui/Toast";
 interface RegisterFormProps {
     onRegister: (email: string, password: string) => Promise<void>;
     loading?: boolean;
@@ -21,8 +21,8 @@ export default function RegisterForm({
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        if (password !== confirmPassword) {
-            alert("Passwords do not match");
+        if (password !== confirmPassword) {            
+            Toast.fire({ icon: "error", title: "Passwords do not match" });
             return;
         }
         await onRegister(email, password);
