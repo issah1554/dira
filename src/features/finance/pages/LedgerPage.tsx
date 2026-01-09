@@ -245,11 +245,10 @@ export default function LedgerPage() {
                         <div className="flex gap-2">
                             <label
                                 className={`flex items-center gap-2 px-4 py-2 rounded-lg cursor-pointer border text-sm font-medium
-            ${formData.dc === "dr"
+                                ${formData.dc === "dr"
                                         ? "bg-red-50 border-red-500 text-red-600"
                                         : "border-main-300 text-main-600 hover:bg-main-50"}
-        `}
-                            >
+                                `} >
                                 <input
                                     type="radio"
                                     name="dc"
@@ -264,11 +263,10 @@ export default function LedgerPage() {
 
                             <label
                                 className={`flex items-center gap-2 px-4 py-2 rounded-lg cursor-pointer border text-sm font-medium
-            ${formData.dc === "cr"
+                                        ${formData.dc === "cr"
                                         ? "bg-green-50 border-green-500 text-green-600"
                                         : "border-main-300 text-main-600 hover:bg-main-50"}
-        `}
-                            >
+                            `}>
                                 <input
                                     type="radio"
                                     name="dc"
