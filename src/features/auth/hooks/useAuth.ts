@@ -9,10 +9,16 @@ export const useAuth = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        const unsubscribe = authService.subscribeAuth((firebaseUser) => {
-            setUser(firebaseUser);
-            setLoading(false);
-        });
+        const unsubscribe = authService.subscribeAuth(
+            (firebaseUser) => {
+                setUser(firebaseUser);
+                setLoading(false);
+            },
+            (error) => {
+                setError(error.message);
+                setLoading(false);
+            }
+        );
         return () => unsubscribe();
     }, []);
 

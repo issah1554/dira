@@ -22,6 +22,9 @@ export const logout = async () => {
     await signOut(auth);
 };
 
-export const subscribeAuth = (callback: (user: User | null) => void) => {
-    return onAuthStateChanged(auth, callback);
+export const subscribeAuth = (
+    callback: (user: User | null) => void,
+    onError: (error: Error) => void
+) => {
+    return onAuthStateChanged(auth, callback, onError);
 };
