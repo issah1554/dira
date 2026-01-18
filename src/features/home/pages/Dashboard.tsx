@@ -4,6 +4,7 @@ const statsCards = [
     { label: "Total Income", value: "$24,580", change: "+12.5%", trend: "up", icon: "bi-currency-dollar", color: "text-success", bg: "bg-success/10" },
     { label: "Total Expenses", value: "$8,300", change: "+8.2%", trend: "up", icon: "bi-cash-stack", color: "text-danger", bg: "bg-danger/10" },
     { label: "Current Balance", value: "$16,280", change: "+5.1%", trend: "up", icon: "bi-wallet2", color: "text-info", bg: "bg-info/10" },
+    { label: "Current Balance", value: "$16,280", change: "+5.1%", trend: "up", icon: "bi-wallet2", color: "text-info", bg: "bg-info/10" },
     { label: "Pending Tasks", value: "12", change: "-3.4%", trend: "down", icon: "bi-list-task", color: "text-warning", bg: "bg-warning/10" },
 ];
 
@@ -46,7 +47,7 @@ export function Dashboard() {
             </div>
 
             {/* Stats Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6 4xl:grid-cols-7 5xl:grid-cols-8 6xl:grid-cols-9 7xl:grid-cols-10 gap-3 mb-6">
                 {statsCards.map((stat, index) => (
                     <div key={index} className="bg-main-200 rounded-lg shadow-none border border-main-300 p-4 hover:shadow-md transition-shadow">
                         <div className="flex items-center justify-between">
