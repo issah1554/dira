@@ -21,6 +21,7 @@ import { TodoList } from "./features/todo/pages/TodoList";
 import { TodoCategories } from "./features/todo/pages/TodoCategories";
 import { AuthProvider } from "./contexts/AuthContext";
 import ProtectedRoute from "./components/layout/ProtectedRoute";
+import { AccountsGridPage } from "./features/finance/pages/AccountsPage2";
 
 function App() {
   return (
@@ -53,6 +54,8 @@ function App() {
               <Route path="/finance/obligations" element={<ObligationsPage />} />
               <Route path="/finance/budgets" element={<Budgets />} />
               <Route path="/finance/accounts" element={<Accounts />} />
+              <Route path="/finance/accounts2" element={<AccountsGridPage />} />
+
 
               {/* Reports & Analytics */}
               <Route path="/reports" element={<Reports />} />

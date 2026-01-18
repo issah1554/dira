@@ -230,7 +230,7 @@ export default function LedgerPage() {
                             labelBgColor="bg-main-200"
                             value={formData.date}
                             onChange={e => setFormData(p => ({ ...p, date: e.target.value }))}
-                            required color={"neutral"}
+                            required color={"primary"}
                             size={"md"} />
 
                         <TextInput
@@ -246,8 +246,8 @@ export default function LedgerPage() {
                             <label
                                 className={`flex items-center gap-2 px-4 py-2 rounded-lg cursor-pointer border text-sm font-medium
                                 ${formData.dc === "dr"
-                                        ? "bg-red-50 border-red-500 text-red-600"
-                                        : "border-main-300 text-main-600 hover:bg-main-50"}
+                                    ? "bg-red-200 border-2 border-red-300 text-red-600"
+                                    : "border-main-300 text-main-600 hover:bg-danger-100"}
                                 `} >
                                 <input
                                     type="radio"
@@ -264,8 +264,8 @@ export default function LedgerPage() {
                             <label
                                 className={`flex items-center gap-2 px-4 py-2 rounded-lg cursor-pointer border text-sm font-medium
                                         ${formData.dc === "cr"
-                                        ? "bg-green-50 border-green-500 text-green-600"
-                                        : "border-main-300 text-main-600 hover:bg-main-50"}
+                                        ? "bg-green-200 border-2 border-green-300 text-green-600"
+                                    : "border-main-300 text-green-600 hover:bg-green-100"}
                             `}>
                                 <input
                                     type="radio"
